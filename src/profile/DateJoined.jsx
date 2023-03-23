@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedDate } from '@edx/frontend-platform/i18n';
 
-const DateJoined = ({ date }) => {
+function DateJoined({ date }) {
   if (date == null) {
     return null;
   }
 
   return (
-    <p className="mb-0">
+    <p className="mb-0 date-profile">
       <FormattedMessage
         id="profile.datejoined.member.since"
         defaultMessage="Member since {year}"
@@ -19,7 +19,7 @@ const DateJoined = ({ date }) => {
       />
     </p>
   );
-};
+}
 
 DateJoined.propTypes = {
   date: PropTypes.string,

@@ -12,8 +12,7 @@ module.exports = {
       imageUrlMedium: null,
       imageUrlLarge: null
     },
-    levelOfEducation: null,
-    learningGoal: null
+    levelOfEducation: null
   },
   profilePage: {
     errors: {},

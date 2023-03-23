@@ -2,6 +2,53 @@
   word-break: break-all !important;
 }
 
+.alert-info {
+    background-color: #b3b3b3;
+    color: inherit;
+}
+
+.profile-page .alert-link {
+    background-color: #3fa9f5;
+    color: white;
+    padding: 10px 30px;
+    text-decoration: none;
+    float: right;
+}
+
+.page-title{
+  font-weight: lighter;
+  border-bottom: 2px solid #3fa9f5;
+  margin-bottom: 40px;
+}
+
+.date-profile{
+  color: #3fa9f5;
+}
+
+.col-auto.col-md-4.col-lg-3{
+  border-bottom: 2px solid #3fa9f5;
+}
+
+main{
+  background-color: #f2f2f2;
+  padding-top: 60px;
+}
+
+.box-profile{
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #3fa9f5;
+  background-color: white;
+}
+
+@media (min-width: 1200px)
+{
+  .container-wrapper{
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+}
+
 // TODO: Update edx-bootstrap theme to incorporate these edits.
 .btn, a.btn {
   text-decoration: none;
@@ -14,13 +61,6 @@
   &:hover {
     text-decoration: underline;
   }
-}
-
-.profile-page-bg-banner {
-  height: 12rem;
-  background-image: url('./assets/dot-pattern-light.png');
-  background-repeat: repeat-x;
-  background-size: auto 85%;
 }
 
 .username-description {
@@ -62,7 +102,6 @@
     @include media-breakpoint-up(md) {
       max-width: 12rem;
       margin-right: 0;
-      margin-top: -8rem;
       margin-bottom: 2rem;
     }
   }

@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 import EditButton from './EditButton';
 import { Visibility } from './Visibility';
 
-const EditableItemHeader = ({
+function EditableItemHeader({
   content,
   showVisibility,
   visibility,
   showEditButton,
   onClickEdit,
   headingId,
-}) => (
-  <div className="editable-item-header mb-2">
-    <h2 className="edit-section-header" id={headingId}>
-      {content}
-      {showEditButton ? <EditButton style={{ marginTop: '-.35rem' }} className="float-right px-0" onClick={onClickEdit} /> : null}
-    </h2>
-    {showVisibility ? <p className="mb-0"><Visibility to={visibility} /></p> : null}
-  </div>
-);
+}) {
+  return (
+    <div className="editable-item-header mb-2">
+      <h2 className="edit-section-header" id={headingId}>
+        {content}
+        {showEditButton ? <EditButton style={{ marginTop: '-.35rem' }} className="float-right px-0" onClick={onClickEdit} /> : null}
+      </h2>
+      {showVisibility ? <p className="mb-0"><Visibility to={visibility} /></p> : null}
+    </div>
+  );
+}
 
 export default EditableItemHeader;
 

@@ -7,20 +7,22 @@ import { Button } from '@edx/paragon';
 
 import messages from './EditButton.messages';
 
-const EditButton = ({
+function EditButton({
   onClick, className, style, intl,
-}) => (
-  <Button
-    variant="link"
-    size="sm"
-    className={className}
-    onClick={onClick}
-    style={style}
-  >
-    <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
-    {intl.formatMessage(messages['profile.editbutton.edit'])}
-  </Button>
-);
+}) {
+  return (
+    <Button
+      variant="link"
+      size="sm"
+      className={className}
+      onClick={onClick}
+      style={style}
+    >
+      <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+      {intl.formatMessage(messages['profile.editbutton.edit'])}
+    </Button>
+  );
+}
 
 export default injectIntl(EditButton);
 

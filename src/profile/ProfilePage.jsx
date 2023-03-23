@@ -32,8 +32,6 @@ import AgeMessage from './AgeMessage';
 import DateJoined from './DateJoined';
 import UsernameDescription from './UsernameDescription';
 import PageLoading from './PageLoading';
-import Banner from './Banner';
-import LearningGoal from './forms/LearningGoal';
 
 // Selectors
 import { profilePageSelector } from './data/selectors';
@@ -47,10 +45,10 @@ class ProfilePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    const credentialsBaseUrl = context.config.CREDENTIALS_BASE_URL;
+    const recordsUrl = this.getRecordsUrl(context);
 
     this.state = {
-      viewMyRecordsUrl: credentialsBaseUrl ? `${credentialsBaseUrl}/records` : null,
+      viewMyRecordsUrl: recordsUrl,
       accountSettingsUrl: `${context.config.LMS_BASE_URL}/account/settings`,
     };
 
@@ -93,6 +91,19 @@ class ProfilePage extends React.Component {
     this.props.updateDraft(name, value);
   }
 
+  getRecordsUrl(context) {
+    let recordsUrl = null;
+
+    if (getConfig().ENABLE_LEARNER_RECORD_MFE) {
+      recordsUrl = getConfig().LEARNER_RECORD_MFE_BASE_URL;
+    } else {
+      const credentialsBaseUrl = context.config.CREDENTIALS_BASE_URL;
+      recordsUrl = credentialsBaseUrl ? `${credentialsBaseUrl}/records` : null;
+    }
+
+    return recordsUrl;
+  }
+
   isYOBDisabled() {
     const { yearOfBirth } = this.props;
     const currentYear = new Date().getFullYear();
@@ -124,10 +135,9 @@ class ProfilePage extends React.Component {
 
     return (
       <span data-hj-suppress>
-        <h1 className="h2 mb-0 font-weight-bold">{this.props.match.params.username}</h1>
+        <h1 className="h2 mb-0 font-weight-bold name-profile">{this.props.match.params.username}</h1>
         <DateJoined date={dateJoined} />
         {this.isYOBDisabled() && <UsernameDescription />}
-        <hr className="d-none d-md-block" />
       </span>
     );
   }
@@ -172,8 +182,6 @@ class ProfilePage extends React.Component {
       socialLinks,
       draftSocialLinksByPlatform,
       visibilitySocialLinks,
-      learningGoal,
-      visibilityLearningGoal,
       languageProficiencies,
       visibilityLanguageProficiencies,
       visibilityCourseCertificates,
@@ -222,7 +230,7 @@ class ProfilePage extends React.Component {
         {this.renderPhotoUploadErrorMessage()}
         <div className="row">
           <div className="col-md-4 col-lg-4">
-            <div className="d-none d-md-block mb-4">
+            <div className="d-none d-md-block mb-4 box-profile">
               {this.renderHeadingLockup()}
             </div>
             <div className="d-md-none mb-4">
@@ -268,14 +276,6 @@ class ProfilePage extends React.Component {
               formId="bio"
               {...commonFormProps}
             />
-            {getConfig().ENABLE_SKILLS_BUILDER_PROFILE && (
-              <LearningGoal
-                learningGoal={learningGoal}
-                visibilityLearningGoal={visibilityLearningGoal}
-                formId="learningGoal"
-                {...commonFormProps}
-              />
-            )}
             <Certificates
               visibilityCourseCertificates={visibilityCourseCertificates}
               formId="certificates"
@@ -290,7 +290,7 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div className="profile-page">
-        <Banner />
+       <h1 className="page-title">Perfil de usuario</h1> 
         {this.renderContent()}
       </div>
     );
@@ -344,10 +344,6 @@ ProfilePage.propTypes = {
   })),
   visibilitySocialLinks: PropTypes.string.isRequired,
 
-  // Learning Goal form data
-  learningGoal: PropTypes.string,
-  visibilityLearningGoal: PropTypes.string.isRequired,
-
   // Other data we need
   profileImage: PropTypes.shape({
     src: PropTypes.string,
@@ -392,7 +388,6 @@ ProfilePage.defaultProps = {
   socialLinks: [],
   draftSocialLinksByPlatform: {},
   bio: null,
-  learningGoal: null,
   languageProficiencies: [],
   courseCertificates: null,
   requiresParentalConsent: null,

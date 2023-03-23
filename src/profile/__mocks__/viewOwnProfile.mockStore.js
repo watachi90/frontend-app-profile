@@ -42,8 +42,7 @@ module.exports = {
     secondaryEmail: null,
     timeZone: null,
     gender: null,
-    accountPrivacy: 'custom',
-    learningGoal: 'advance_career'
+    accountPrivacy: 'custom'
   },
   profilePage: {
     errors: {},
@@ -92,8 +91,7 @@ module.exports = {
       timeZone: null,
       levelOfEducation: 'el',
       gender: null,
-      accountPrivacy: 'custom',
-      learningGoal: 'advance_career'
+      accountPrivacy: 'custom'
     },
     preferences: {
       visibilityUserLocation: 'all_users',
@@ -106,8 +104,7 @@ module.exports = {
       visibilityName: 'private',
       visibilityLanguageProficiencies: 'all_users',
       visibilityCountry: 'all_users',
-      accountPrivacy: 'custom',
-      visibilityLearningGoal: 'private',
+      accountPrivacy: 'custom'
     },
     courseCertificates: [
       {

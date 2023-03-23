@@ -47,7 +47,7 @@ configureI18n({
   messages,
 });
 
-const SocialLinksWrapper = (props) => {
+function SocialLinksWrapper(props) {
   const contextValue = useMemo(() => ({
     authenticatedUser: { userId: null, username: null, administrator: false },
     config: getConfig(),
@@ -63,7 +63,7 @@ const SocialLinksWrapper = (props) => {
       </IntlProvider>
     </AppContext.Provider>
   );
-};
+}
 
 SocialLinksWrapper.defaultProps = {
   store: mockStore(savingEditedBio),
@@ -73,7 +73,7 @@ SocialLinksWrapper.propTypes = {
   store: PropTypes.shape({}),
 };
 
-const SocialLinksWrapperWithStore = ({ store }) => {
+function SocialLinksWrapperWithStore({ store }) {
   const contextValue = useMemo(() => ({
     authenticatedUser: { userId: null, username: null, administrator: false },
     config: getConfig(),
@@ -89,7 +89,7 @@ const SocialLinksWrapperWithStore = ({ store }) => {
       </IntlProvider>
     </AppContext.Provider>
   );
-};
+}
 
 SocialLinksWrapperWithStore.defaultProps = {
   store: mockStore(savingEditedBio),

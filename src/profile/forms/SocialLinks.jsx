@@ -244,12 +244,14 @@ export default connect(
   {},
 )(injectIntl(SocialLinks));
 
-const SocialLink = ({ url, name, platform }) => (
-  <a href={url} className="font-weight-bold">
-    <FontAwesomeIcon className="mr-2" icon={platformDisplayInfo[platform].icon} />
-    {name}
-  </a>
-);
+function SocialLink({ url, name, platform }) {
+  return (
+    <a href={url} className="font-weight-bold">
+      <FontAwesomeIcon className="mr-2" icon={platformDisplayInfo[platform].icon} />
+      {name}
+    </a>
+  );
+}
 
 SocialLink.propTypes = {
   url: PropTypes.string.isRequired,
@@ -257,9 +259,9 @@ SocialLink.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-const EditableListItem = ({
+function EditableListItem({
   url, platform, onClickEmptyContent, name,
-}) => {
+}) {
   const linkDisplay = url ? (
     <SocialLink name={name} url={url} platform={platform} />
   ) : (
@@ -267,7 +269,7 @@ const EditableListItem = ({
   );
 
   return <li className="form-group">{linkDisplay}</li>;
-};
+}
 
 EditableListItem.propTypes = {
   url: PropTypes.string,
@@ -280,22 +282,24 @@ EditableListItem.defaultProps = {
   onClickEmptyContent: null,
 };
 
-const EditingListItem = ({
+function EditingListItem({
   platform, name, value, onChange, error,
-}) => (
-  <li className="form-group">
-    <label htmlFor={`social-${platform}`}>{name}</label>
-    <input
-      className={classNames('form-control', { 'is-invalid': Boolean(error) })}
-      type="text"
-      id={`social-${platform}`}
-      name={platform}
-      value={value || ''}
-      onChange={onChange}
-      aria-describedby="social-error-feedback"
-    />
-  </li>
-);
+}) {
+  return (
+    <li className="form-group">
+      <label htmlFor={`social-${platform}`}>{name}</label>
+      <input
+        className={classNames('form-control', { 'is-invalid': Boolean(error) })}
+        type="text"
+        id={`social-${platform}`}
+        name={platform}
+        value={value || ''}
+        onChange={onChange}
+        aria-describedby="social-error-feedback"
+      />
+    </li>
+  );
+}
 
 EditingListItem.propTypes = {
   platform: PropTypes.string.isRequired,
@@ -310,31 +314,35 @@ EditingListItem.defaultProps = {
   error: null,
 };
 
-const EmptyListItem = ({ onClick, name }) => (
-  <li className="mb-4">
-    <EmptyContent onClick={onClick}>
-      <FormattedMessage
-        id="profile.sociallinks.add"
-        defaultMessage="Add {network}"
-        values={{
-          network: name,
-        }}
-        description="{network} is the name of a social network such as Facebook or Twitter"
-      />
-    </EmptyContent>
-  </li>
-);
+function EmptyListItem({ onClick, name }) {
+  return (
+    <li className="mb-4">
+      <EmptyContent onClick={onClick}>
+        <FormattedMessage
+          id="profile.sociallinks.add"
+          defaultMessage="Add {network}"
+          values={{
+            network: name,
+          }}
+          description="{network} is the name of a social network such as Facebook or Twitter"
+        />
+      </EmptyContent>
+    </li>
+  );
+}
 
 EmptyListItem.propTypes = {
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-const StaticListItem = ({ name, url, platform }) => (
-  <li className="mb-2">
-    <SocialLink name={name} url={url} platform={platform} />
-  </li>
-);
+function StaticListItem({ name, url, platform }) {
+  return (
+    <li className="mb-2">
+      <SocialLink name={name} url={url} platform={platform} />
+    </li>
+  );
+}
 
 StaticListItem.propTypes = {
   name: PropTypes.string.isRequired,
